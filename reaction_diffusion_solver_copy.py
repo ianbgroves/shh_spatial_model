@@ -128,16 +128,50 @@ def pde_solver_with_no_flux_bcs(Nx, T):
     return s, f, x, t
 
 
-s, f, x, t = pde_solver_with_no_flux_bcs(Nx=50, T=10.0)
 
 
-# Call the PDE solver and plot u(x,1.0) and v(x,1.0)
-plt.figure(0)
-plt.plot(x, s)
-plt.xlabel('$x$')
-plt.ylabel('$s(x,t)$')
+# Timecourse = 1.0
+# s, f, x, t = pde_solver_with_no_flux_bcs(Nx=50, T=Timecourse)
 
-plt.figure(1)
-plt.plot(x, f)
-plt.xlabel('$x$')
-plt.ylabel('$f(x,t)$')
+# # Call the PDE solver and plot u(x,1.0) and v(x,1.0)
+
+# fig, ax = plt.subplots()
+# plt.title("Timecourse solution for S with T = {}".format(Timecourse))
+# ax.plot(x, s)
+# ax.yaxis.offsetText.set_visible(False)
+# plt.xlabel('$x$')
+# plt.ylabel('$s(x,t)$')
+
+# # plt.figure()
+# # plt.title("Timecourse solution for F with T = {}".format(Timecourse))
+# # plt.plot(x, f)
+# # plt.xlabel('$x$')
+# # plt.ylabel('$f(x,t)$')
+
+# plt.show()
+
+
+T_array = np.array([1.,5.,10.,20.])
+
+for T in T_array:
+    s, f, x, t = pde_solver_with_no_flux_bcs(Nx=50, T=T)
+    
+    # Call the PDE solver and plot u(x,1.0) and v(x,1.0)
+   
+    fig, ax = plt.subplots()
+    plt.title("Timecourse solution for S with T = {}".format(T))
+    ax.plot(x, s)
+    ax.yaxis.offsetText.set_visible(False)
+    plt.xlabel('$x$')
+    plt.ylabel('$s(x,t)$')
+    plt.savefig('Timecourse_soln_for_s_t_{}.png'.format(T))
+
+    fig,ax = plt.subplots()
+    plt.title("Timecourse solution for F with T = {}".format(T))
+    ax.plot(x, f)
+    ax.yaxis.offsetText.set_visible(False)
+    plt.xlabel('$x$')
+    plt.ylabel('$f(x,t)$')
+    plt.savefig('Timecourse_soln_for_f_t_{}.png'.format(T))
+    
+plt.show()
