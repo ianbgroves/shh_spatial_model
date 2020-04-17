@@ -111,7 +111,7 @@ def pde_solver_with_no_flux_bcs(Nx, T):
     rhs_f = np.zeros(Nx+1)
     
     # Set initial condition
-    s_old = 1+np.tanh((0.25-x)*10) 
+    s_old = (1+np.tanh((0.25-x)*10))*3 
     f_old = 1+np.tanh((0.25-x)*10) 
 
     # Time loop
@@ -164,7 +164,7 @@ for T in T_array:
     ax.yaxis.offsetText.set_visible(False)
     plt.xlabel('$x$')
     plt.ylabel('$s(x,t)$')
-    plt.savefig('Timecourse_soln_for_s_t_{}.png'.format(T))
+    #plt.savefig('Timecourse_soln_for_s_t_{}.png'.format(T))
 
     fig,ax = plt.subplots()
     plt.title("Timecourse solution for F with T = {}".format(T))
@@ -172,6 +172,6 @@ for T in T_array:
     ax.yaxis.offsetText.set_visible(False)
     plt.xlabel('$x$')
     plt.ylabel('$f(x,t)$')
-    plt.savefig('Timecourse_soln_for_f_t_{}.png'.format(T))
+    #plt.savefig('Timecourse_soln_for_f_t_{}.png'.format(T))
     
 plt.show()
